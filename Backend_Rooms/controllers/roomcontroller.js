@@ -1,0 +1,17 @@
+const rooms =require ('../models/rooms.js')
+
+const getrooms = async(req,res) =>{
+
+    try{
+        const data = await rooms.find()
+        
+        return res.status(200).send({data:data})
+    }
+    catch(error){
+        return res.status(500).send({error:error})
+    }
+}
+
+module.exports= {
+    getrooms
+}
