@@ -1,0 +1,45 @@
+body {
+ background-image: url("./assets/images/background.jpg");
+ background-color: #800000;
+ background-size:cover;
+ color:#800080;
+}
+/*box background*/
+.containere{
+	width:57%;
+	padding:10px;
+	background:#ddd;
+	margin: 100px auto;
+	display:flex;
+	justify-content:center;
+	position: relative;
+	background: rgba(255,255,255,.2);
+	
+}
+/*box*/
+.box{
+	width:150px;
+	height:120px;
+	margin: 0px 20px;
+	transition:1s;
+}
+/*box hover*/
+.box:hover{
+	transform:scale(1.1);
+	box-shadow:2px 2px 2px #000;
+	z-index:2;
+}
+
+/*boxx*/
+.boxx{
+	width:500px;
+	height:500px;
+	margin: 0px 20px;
+	transition:1s;
+}
+/*boxx hover*/
+.boxx:hover{
+	transform:scale(1.1);
+	box-shadow:2px 2px 2px #000;
+	z-index:2;
+}
