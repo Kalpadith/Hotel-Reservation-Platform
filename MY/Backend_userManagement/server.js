@@ -10,7 +10,9 @@ app.use(express.json())
 require('./db/connectDB')
 
 const apiRoutes = require('./routes/apiRoutes')
-app.use("/api",apiRoutes)
+const authRoutes = require('./routes/auth')
+app.use("/register/users",apiRoutes)
+app.use("/login/auth",authRoutes)
 
 const port = process.env.PORT || 5000
 app.listen(port,() =>{

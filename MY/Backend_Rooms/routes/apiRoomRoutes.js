@@ -10,7 +10,7 @@ const router = express.Router()
 
 
 
-router.get("/rooms",getrooms)
-router.post("/rooms",addrooms)
+router.get("/getrooms",getrooms)
+router.post("/addrooms",addrooms)
 
 module.exports = router

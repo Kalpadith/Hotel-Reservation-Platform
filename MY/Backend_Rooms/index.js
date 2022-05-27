@@ -16,8 +16,8 @@ const apiRoomRoutes = require ('./routes/apiRoomRoutes')
 const apiBookRoomRoutes = require ('./routes/apiBookRoomRoutes')
 require ('./db/connectDB')
 
-app.use("/api",apiRoomRoutes)
-app.use("/api/book",apiBookRoomRoutes)
+app.use("/room",apiRoomRoutes)
+app.use("/bookroom",apiBookRoomRoutes)
 
 const PORT = process.env.PORT || 5000;
 

@@ -10,9 +10,11 @@ app.use(express.json())
 require('./db/connectDB')
 
 const apiRoutes = require('./routes/apiRoutes')
-app.use("/api",apiRoutes)
+const authRoutes = require('./routes/auth')
+app.use("/owner/owners",apiRoutes)
+app.use("/logino/autho",authRoutes)
 
-const port = process.env.PORT || 5001
+const port = process.env.PORT || 5000
 app.listen(port,() =>{
     console.log(`service Users started on port ${port}`)
 })

@@ -98,7 +98,7 @@ export default class Bookrooms extends Component {
             console.log(data)
 
 
-            axios.post("http://localhost:8020/api/book/bookrooms", data).then((res) => {
+            axios.post("http://localhost:8020/bookroom/addbookrooms", data).then((res) => {
                 if (res.data.success) {
                     this.setState({
                         from_date: "",

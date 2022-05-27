@@ -9,10 +9,10 @@ app.use(express.json())
 
 require('./db/connectDB')
 
-const apiRoutes = require('./routes/authAdmin')
-app.use("/logina/authAdmin",apiRoutes)
+const apiRoutes = require('./routes/apiRoutes')
+app.use("/api",apiRoutes)
 
 const port = process.env.PORT || 5000
 app.listen(port,() =>{
-    console.log(`service Admins started on port ${port}`)
+    console.log(`service Users started on port ${port}`)
 })

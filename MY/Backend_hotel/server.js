@@ -17,7 +17,7 @@ const uri = process.env.MONGO_CONNECTION_STRING
 
 
 const apiRoutes=  require('./routes/apiRoutes')
-app.use("/api",apiRoutes)
+app.use("/hotel",apiRoutes)
 
 const port = process.env.PORT || 5000
 

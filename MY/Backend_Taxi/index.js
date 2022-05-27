@@ -14,7 +14,7 @@ app.use(express.json())
 const apiTaxiRoutes = require ('./routes/apiTaxiRoutes')
 require ('./db/connectDB')
 
-app.use("/api",apiTaxiRoutes)
+app.use("/taxi",apiTaxiRoutes)
 
 const port = process.env.PORT || 5000
 

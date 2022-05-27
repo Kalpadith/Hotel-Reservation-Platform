@@ -15,7 +15,7 @@ export default class BookingView extends Component{
   }
 
   retrivebookrooms(){
-    axios.get("http://localhost:8020/api/bookrooms").then(res =>{
+    axios.get("http://localhost:8020/bookroom/getbookrooms").then(res =>{
       if(res.data.success){
         this.setState({
           bookrooms:res.data.existingbookrooms

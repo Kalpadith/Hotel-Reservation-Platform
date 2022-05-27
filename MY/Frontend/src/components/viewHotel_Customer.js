@@ -80,13 +80,8 @@ const ViewHotel = forwardRef((props, ref) => {
                                     <td>{x.description}</td>
 
                                     <td>
-                                        <button className="btn btn-warning" onClick={(e) => showModal(e, x)}>
-                                            <i className="las la-edit"/>
-                                        </button>
-                                        <button className="m-2 btn btn-danger" onClick={() => deleteHotel(x?._id)}>
-                                            <i className="las la-trash"/>
-                                        </button>
-                                        <button className="btn btn-success"> <a href="/" style={{ textDecoration: 'none', color: 'black' }}>View more</a></button>
+                                        
+                                        <button className="btn btn-success"> <a href="/Viewrooms" style={{ textDecoration: 'none', color: 'black' }}>View more</a></button>
                                     </td>
                                 </tr>
                             )

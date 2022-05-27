@@ -1,92 +1,96 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Form, Alert } from "react-bootstrap";
-import GoogleButton from "react-google-button";
-//import { useUserAuth } from "../contexts/UserAuthContext";
-import styled from "styled-components";
+import axios from 'axios';
 
-const Button = styled.button`
-  background-color: blue;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  border: none;
-  font-size: 20px;
-  width: 100%;
+import {Link} from 'react-router-dom';
+import { useState } from 'react';
 
-  &:hover {
-    background-color: white;
-    color: blue;
-    border: 2px solid blue;
-  }
-`;
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  
-  const navigate = useNavigate();
+const LoginA = () => {
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await Login(email, password);
-      if(email === 'admin@ad.com'){
-      navigate("/");
-      }navigate("/");
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  /*const handleGoogleSignIn = async (e) => {
-    e.preventDefault();
-    try {
-      await googleSignIn();
-      navigate("/");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };*/
-
-  return (
-    <>
-      <div className="p-4 box" style={{ width: "70%", margin: "100px auto" }}>
-        <h2 className="mb-3 text-center">Login</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="email"
-              placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-
-          <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit" href="/Viewrooms">
-              Log In
-            </Button>
-          </div>
-        </Form>
-        <hr />
+    const [data, setData] = useState({
         
-        <div className="p-4 box mt-3 text-center">
-          Don't have an account? <Link to="/SignupA">Sign up</Link>
-        </div>
-      </div>
-    </>
-  );
-};
+        email: "",
+        password: ""
+    });
 
-export default Login;
+    const [error, setError] = useState("");
+
+    
+
+    const handleInputChange = ({ currentTarget: input}) => {
+        setData({...data, [input.name]: input.value});
+    };
+
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        try{
+            const url = "http://localhost:8052/logina/authAdmin";
+            const { data: res} = await axios.post(url, data);
+            localStorage.setItem("token", res.data);
+            window.location = "/viewbooking"
+            
+            
+
+        }catch(error){
+            if(error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500){
+                    setError(error.response.data.message)
+
+                }
+
+        }
+
+    }
+
+    return(
+        <div>
+            <div>
+            
+            </div>
+
+            <div>
+            <div className="col-md-8 mt-4 mx-auto">
+                    <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
+                   
+                    <form onSubmit={handleSubmit}>
+                    
+
+                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}>Email</label>
+                            <input type="email"
+                                className="form-control"
+                                name="email"
+                                placeholder="Email"
+                                value={data.email}
+                                required
+                                onChange={handleInputChange} />
+                        </div>
+
+                        
+
+                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}>Password</label>
+                            <input type="password"
+                                className="form-control"
+                                name="password"
+                                placeholder="Password"
+                                value={data.password}
+                                required
+                                onChange={handleInputChange} />
+                        </div>
+                        {error && <div>{error}</div>}
+                        <button type='submit'>Sign in</button>
+                        </form>
+
+                        
+
+            </div>
+
+        </div>
+        </div>
+    
+    )
+};
+export default LoginA;

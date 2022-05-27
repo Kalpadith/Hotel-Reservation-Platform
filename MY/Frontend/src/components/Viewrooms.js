@@ -20,7 +20,7 @@ export default class Viewrooms extends Component {
 
 
     retrieveRoom() {
-        axios.get("http://localhost:8020/api/rooms").then(res => {
+        axios.get("http://localhost:8020/room/getrooms").then(res => {
             if (res.data.success) {
                 this.setState({
                     Room: res.data.data
@@ -34,14 +34,6 @@ export default class Viewrooms extends Component {
     }
 
     
-    // onDelete = (id) => {
-
-    //     axios.delete(`http://localhost:8070/Income/idelete/${id}`).then((res) => {
-    //         alert("Deleted Successfully");
-    //         this.retrieveIncome();
-    //     })
-
-    // }
 
     filterData(Room, searchkey) {
 
@@ -58,7 +50,7 @@ export default class Viewrooms extends Component {
 
         const searchkey = e.currentTarget.value;
 
-        axios.get("http://localhost:8020/api/rooms").then(res => {
+        axios.get("http://localhost:8020/room/getrooms").then(res => {
             if (res.data.success) {
 
                 this.filterData(res.data.existingrooms, searchkey)
@@ -103,7 +95,6 @@ export default class Viewrooms extends Component {
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Hotel Name</th>
                                 <th scope="col">Room name</th>
                                 <th scope="col">Room Type</th>
                                 <th scope="col">No of guests can have</th>
@@ -115,13 +106,13 @@ export default class Viewrooms extends Component {
                             {this.state.Room.map((Room, index) => (
                                 <tr key={index}>
                                     <th scope="row"> {index + 1}</th>
-                                    <td>
+                                    {/* <td>
                                         <a href={`/get/${Room._id}`} style={{ textDecoration: 'none' }}>
 
 
                                             {Room.hotel_name}
                                         </a>
-                                    </td>
+                                    </td> */}
                                     <td>{Room.room_name}</td>
                                     <td>{Room.room_type}</td>
                                     <td>{Room.guests}</td>

@@ -53,12 +53,28 @@ return (
         
                 <div className="mt-5 col-md-6 col-12 mx-auto">
                     <button className="btn btn-outline-dark btn-lg btn-block">Confirm</button>
-                    <button className="btn btn-outline-dark btn-lg btn-block" href="https://www.sandbox.paypal.com/ca/signin">Pay Via pay Pal</button>
+                    <button className="btn btn-outline-dark btn-lg btn-block" href="https://www.paypal.com/examplecode/ExampleButtonID">Pay Via pay Pal</button>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post"> 
+                {/* <!-- Identify your business so that you can collect the payments. -->  */}
+                <input type="hidden" name="business" value="herschelgomez@xyzzyu.com"/> 
+                {/* <!-- Specify a Buy Now button. -->  */}
+                <input type="hidden" name="cmd" value="_xclick"/> 
+                {/* <!-- Specify details about the item that buyers will purchase. --> */}
+                 <input type="hidden" name="item_name" value="Hot Sauce-12oz. Bottle"/>
+                 <input type="hidden" name="amount" value="5.95"/>
+                 <input type="hidden" name="currency_code" value="USD"/> 
+                 {/* <!-- Display the payment button. --> */}
+                  <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="Buy Now"/> 
+                  <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" /> 
+                 </form>
                 </div>
+               
             </div>
         </div>
     </div>
+    
 </div>
+
 )
 }
 export default payment

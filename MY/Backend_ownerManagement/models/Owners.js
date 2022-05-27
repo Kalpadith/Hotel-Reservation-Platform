@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
+const jwt =require('jsonwebtoken')
+const joi = require('joi')
+const passwordComplexity = require("joi-password-complexity")
 
-const Schema = mongoose.Schema;
 
-const ownerSchema = new Schema({
+const ownerSchema = new mongoose.Schema({
     name:{
         type:String,
         require:true,
@@ -22,7 +24,23 @@ const ownerSchema = new Schema({
         require:true,
         trim:true
     }
-},{timestamps:true})
+},{timestamps:true});
+
+ownerSchema.methods.generateAuthToken = function(){
+    const token = jwt.sign({_id: this._id}, process.env.JWTPRIVATEKEY, {expiresIn: "7d"})
+    return token
+};
 
 const Owner = mongoose.model('Owner',ownerSchema)
-module.exports = Owner
+
+const validate = (data) => {
+    const schema = joi.object({
+        name: joi.string().required().label("Name"),
+        email: joi.string().email().required().label("Email"),
+        hotel: joi.string().required().label("Hotel"),
+        password: passwordComplexity().required().label("Password")
+    })
+    return schema.validate(data)
+}
+
+module.exports = { Owner, validate };

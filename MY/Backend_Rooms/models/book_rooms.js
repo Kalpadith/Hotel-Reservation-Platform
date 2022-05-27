@@ -23,7 +23,7 @@ const bookroomsSchema = new Schema({
         trim:true
     },
     nic:{
-        type:Number,
+        type:String,
         required:true,
         trim:true
     },
